@@ -1,0 +1,22 @@
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: pulsepay-postgres
+    environment:
+      POSTGRES_DB: pulsepay
+      POSTGRES_USER: pulsepay
+      POSTGRES_PASSWORD: pulsepay_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - pulsepay_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pulsepay -d pulsepay"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  pulsepay_data:

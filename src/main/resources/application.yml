@@ -1,0 +1,34 @@
+
+spring:
+  application:
+    name: pulsepay
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pulsepay
+    username: pulsepay
+    password: pulsepay_dev
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 3000
+
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.pulsepay: DEBUG
