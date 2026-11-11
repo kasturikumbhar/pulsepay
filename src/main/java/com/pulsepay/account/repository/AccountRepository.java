@@ -1,7 +1,8 @@
-package com.pulsepay.account;
+package com.pulsepay.account.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.JdbcTemplate;
+import com.pulsepay.account.entity.Account;
 
 import java.util.UUID;
 import java.time.OffsetDateTime;

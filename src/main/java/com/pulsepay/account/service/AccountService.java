@@ -1,8 +1,10 @@
-package com.pulsepay.account;
+package com.pulsepay.account.service;
 
-import com.pulsepay.account.AccountRepository;
+import com.pulsepay.account.repository.AccountRepository;
 import com.pulsepay.account.AccountNotFoundException;
-import com.pulsepay.api.dto.AccountResponse;
+import com.pulsepay.account.dto.AccountResponse;
+import com.pulsepay.account.entity.Account;
+
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

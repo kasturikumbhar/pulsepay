@@ -1,8 +1,7 @@
-package com.pulsepay.api.dto;
-
+package com.pulsepay.account.entity;
 import java.util.UUID;
 import java.time.Instant;
-public record AccountResponse(
+public record Account(
     UUID id,
     UUID ownerId,
     String currency,

@@ -1,4 +1,4 @@
-package com.pulsepay.api.dto;
+package com.pulsepay.account.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

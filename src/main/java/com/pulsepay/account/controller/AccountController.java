@@ -1,8 +1,8 @@
-package com.pulsepay.account;
+package com.pulsepay.account.controller;
 
-import com.pulsepay.account.AccountService;
-import com.pulsepay.api.dto.AccountResponse;
-import com.pulsepay.api.dto.CreateAccountRequest;
+import com.pulsepay.account.service.AccountService;
+import com.pulsepay.account.dto.AccountResponse;
+import com.pulsepay.account.dto.CreateAccountRequest;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
