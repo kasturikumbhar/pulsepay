@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import com.pulsepay.transfer.dto.TransferRequest;
 import com.pulsepay.transfer.exception.IdempotencyConflictException;
@@ -19,6 +20,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @SpringBootTest
 @Testcontainers
 public class TransferIntegrationTest {
+    @Container 
     static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:17")
             .withDatabaseName("pulsepay_test")
             .withUsername("pulsepay")
@@ -26,9 +28,13 @@ public class TransferIntegrationTest {
 
     @DynamicPropertySource
     static void configureDatabase(DynamicPropertyRegistry registry) {
-        registry.add("spring.database.url", POSTGRES::getJdbcUrl);
-        registry.add("spring.datasource.username", POSTGRES::getUsername);
-        registry.add("spring.datasource.password", POSTGRES::getPassword);
+        registry.add("spring.datasource.url", POSTGRES::getJdbcUrl);
+
+    registry.add("spring.datasource.username", POSTGRES::getUsername);
+
+    registry.add("spring.datasource.password", POSTGRES::getPassword);
+
+
     }
 
     @Autowired
@@ -40,6 +46,13 @@ public class TransferIntegrationTest {
 
     @BeforeEach 
         void setup(){
+            jdbcTemplate.update("DELETE FROM ledger_entries");
+
+            jdbcTemplate.update("DELETE FROM ledger_transactions");
+        
+            jdbcTemplate.update("DELETE FROM financial_operations");
+        
+            jdbcTemplate.update("DELETE FROM accounts");
             sourceAccountId=UUID.randomUUID();
             destinationAccountId=UUID.randomUUID();
             createAccount(sourceAccountId, 100000);
